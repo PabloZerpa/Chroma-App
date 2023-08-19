@@ -39,8 +39,6 @@ function Register(){
             <div className='relative transition duration-300 ease-in-out'>
                 <div className='bg-black/75 fixed top-0 right-0 left-0 bottom-0'>
                     <div className='flex justify-center items-center relative w-[400px] h-[600px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black rounded-lg border-solid border-blue-500 border-2'>
-                        
-                        {error && <div className="bg-red-600 text-white p-2 mb-2">{error}</div>}
 
                         <a className='absolute flex items-center justify-center w-8 h-8 text-white font-bold bg-red-600 rounded-full top-0 right-0' href="#">X</a>
                         

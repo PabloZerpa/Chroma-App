@@ -58,8 +58,6 @@ function Login(){
                         
                         <form className="flex flex-col gap-4 justify-center items-center" onSubmit={handleSubmit}>
 
-                            {error && <div className="bg-red-600 text-white p-2 mb-2">{error}</div>}
-
                             <div className="flex gap-1">
                                 <i className="fas fa-at text-white text-lg pt-2 mt-1.5"></i>
                                 <input 
@@ -100,7 +98,7 @@ function Login(){
                                 </button>
                             </div>
 
-                            <a className="text-white text-base hover:underline" href="#registerModal">Don't have an account? <span className="font-bold">Sign Up</span></a>
+                            <a className="text-white text-base hover:underline" href="#registerModal">{`Don't have an account?`} <span className="font-bold">Sign Up</span></a>
 
                         </form>
                         

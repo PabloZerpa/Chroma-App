@@ -46,11 +46,16 @@ const Grid = () => {
         [&>*:nth-child(1)]:row-span-2 [&>*:nth-child(1)]:col-span-2 [&>*:nth-child(5)]:row-span-3 [&>*:nth-child(18)]:col-span-3">
 
         {images.map((image, index) => {
-          return <img 
-            key={index}
-            className="w-full h-full object-cover contrast-75 hover:scale-105 hover:contrast-100 transition duration-200 ease-in-out" 
-            src={image}
-            alt={`${index}`} />
+
+          return(
+            <picture key={index}>
+              <img
+                src={image}
+                alt={`${index}`}
+                className="w-full h-full object-cover contrast-75 hover:scale-105 hover:contrast-100 transition duration-200 ease-in-out"
+              />
+            </picture>
+          )
         })}
 
       </div>

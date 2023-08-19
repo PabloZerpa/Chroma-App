@@ -1,3 +1,10 @@
+
+import Image from 'next/image';
+
+import image1 from '../../public/img-join.jpg';
+import googlePlay from '../../public/google-play.png';
+import chromeStore from '../../public/chrome-store.png';
+
 function Join() {
 
     return (
@@ -6,7 +13,7 @@ function Join() {
 
             <div className="flex justify-center items-center gap-2 md:gap-8 rounded-lg w-full h-[70vh] mx-8 px-4 bg-zinc-900">
                 
-                <img className="w-64 md:w-80 rounded-lg" src="https://i.pinimg.com/564x/1f/86/b5/1f86b5bcde812baf4287895367c0aa63.jpg" alt="" />
+                <Image className="w-64 md:w-80 rounded-lg"  src={image1} alt="img" />
 
                 <div className="flex flex-col items-center gap-4 text-center w-1/2">
 
@@ -16,7 +23,7 @@ function Join() {
                     <div className="flex flex-col md:flex-row gap-4">
 
                         <div className="flex justify-center items-center gap-2 w-40 h-14 bg-zinc-700 hover:bg-zinc-600 bg-zinc-600 text-zinc-200 rounded cursor-pointer">
-                            <img className="w-8" src="https://img.freepik.com/iconos-gratis/google-play_318-566073.jpg" alt="" />
+                            <Image className="w-8" src={googlePlay} alt="img" />
                             <div className="flex flex-col">
                                 <span className="text-xs">Download on the</span>
                                 <span className="text-base font-bold">Google Play</span>
@@ -33,7 +40,7 @@ function Join() {
                     </div>
 
                     <div className="flex justify-center items-center gap-2 w-48 md:w-64 h-14 bg-zinc-700 hover:bg-zinc-600 text-zinc-200 rounded cursor-pointer">
-                        <img className="w-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Google_Chrome_Web_Store_icon_2015.svg/1200px-Google_Chrome_Web_Store_icon_2015.svg.png" alt="" />
+                        <Image className="w-8" src={chromeStore} alt="img" />
                         <div className="flex flex-col">
                             <span className="text-xs">Download on the</span>
                             <span className="text-base font-bold">Chrome Web Store</span>
