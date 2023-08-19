@@ -46,7 +46,6 @@ const Grid = () => {
         [&>*:nth-child(1)]:row-span-2 [&>*:nth-child(1)]:col-span-2 [&>*:nth-child(5)]:row-span-3 [&>*:nth-child(18)]:col-span-3">
 
         {images.map((image, index) => {
-
           return(
             <picture key={index}>
               <img
