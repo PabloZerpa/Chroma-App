@@ -3,6 +3,9 @@
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function Login(){
 
@@ -12,25 +15,40 @@ function Login(){
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
+        const password = formData.get('password');
+
         const res = await signIn("credentials", {
           email: formData.get("email"),
           password: formData.get("password"),
           redirect: false,
         });
+
+        if (res?.error) {
+            toast('SigIn Error', { hideProgressBar: false, autoClose: 1000, type: 'error', position: 'top-center', theme: 'colored' });
+        };
+
+        if(password !== null){
+            if(password.length > 5){
+                if (res?.ok){
+                    toast('SigIn Succes', { hideProgressBar: false, autoClose: 1000, type: 'success', position: 'top-center', theme: 'colored' });
+                    router.push("/#");
+                    setTimeout(() => { window.location.reload() }, 1500);
+                }
+            }
+            else{
+                toast('Password to short', { hideProgressBar: false, autoClose: 1000, type: 'error', position: 'top-center', theme: 'colored' });
+            }
+        }
     
-        if (res?.error) setError(res.error as string);
     
-        // if (res?.ok) return window.history.back();
-        if (res?.ok){
-            router.push("/#");
-            setTimeout(() => { window.location.reload() }, 1000);
-        } 
     };
 
     return(
         
         <div id="loginModal" className='fixed top-0 left-0 right-0 botttom-0 bg-black z-50 opacity-0 
             pointer-events-none transition duration-300 ease-in-out target:opacity-100 target:pointer-events-auto'>
+
+            <ToastContainer />
 
             <div className='relative transition duration-300 ease-in-out'>
                 <div className='bg-black/75 fixed top-0 right-0 left-0 bottom-0'>

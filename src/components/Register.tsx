@@ -1,8 +1,9 @@
 'use client'
-import axios, {AxiosError} from "axios";
 import { FormEvent, useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function Register(){
 
@@ -16,43 +17,14 @@ function Register(){
         const password = formData.get('password');
         const repassword = formData.get('repassword');
 
-        router.push("/#loginModal");
-        setTimeout(() => { window.location.reload() }, 1000);
-
-
         if(password !== null){
-            if(password.length < 6 && password !== repassword){
-
-                try {
-                    // const signupResponse = await axios.post('/api/auth/register', {
-                    //     fullname: formData.get('fullname'),
-                    //     email: formData.get('email'),
-                    //     password: formData.get('password')
-                    // });
-
-                    // const res = await signIn("credentials", {
-                    //     email: signupResponse.data.email,
-                    //     password: formData.get("password"),
-                    //     redirect: false,
-                    //   });
-
-                    // if (res?.ok) return router.push("/");
-
-
-                    // const res = await signIn("credentials", {
-                    //     email: formData.get("email"),
-                    //     password: formData.get("password"),
-                    //     redirect: false,
-                    // });
-                
-                    // if (res?.error) setError(res.error as string);
-                
-                    // if (res?.ok) return window.history.back();
-
-                } catch (error) {
-                    if(error instanceof AxiosError)
-                        setError(error.response?.data.message)
-                }
+            if(password.length > 5 && password === repassword){
+                toast('SignUp Succes', { hideProgressBar: false, autoClose: 1000, type: 'success', position: 'top-center', theme: 'colored' })
+                router.push("/#loginModal");
+                setTimeout(() => { window.location.reload() }, 1500);
+            }
+            else{
+                toast('Password Incorrect', { hideProgressBar: false, autoClose: 1000, type: 'error', position: 'top-center', theme: 'colored' });
             }
         }
     }
@@ -61,6 +33,8 @@ function Register(){
 
         <div id="registerModal" className='fixed top-0 left-0 right-0 botttom-0 bg-black z-50 opacity-0 
             pointer-events-none transition duration-300 ease-in-out target:opacity-100 target:pointer-events-auto'>
+
+            <ToastContainer />
 
             <div className='relative transition duration-300 ease-in-out'>
                 <div className='bg-black/75 fixed top-0 right-0 left-0 bottom-0'>
@@ -76,28 +50,28 @@ function Register(){
                                 <i className="fas fa-user text-white text-lg pt-2 mt-1.5"></i>
                                 <input 
                                     className='outline-none text-white font-bold p-2 bg-transparent border-b-2 border-blue-500 border-solid' 
-                                    type="text"  placeholder="Fullname" name="fullname" />
+                                    type="text"  placeholder="Fullname" name="fullname" required />
                             </div>
 
                             <div className="flex gap-1">
                                 <i className="fas fa-at text-white text-lg pt-2 mt-1.5"></i>
                                 <input 
                                     className='outline-none text-white font-bold p-2 bg-transparent border-b-2 border-blue-500 border-solid' 
-                                    type="email"  placeholder="Email" name="email" />
+                                    type="email"  placeholder="Email" name="email" required />
                             </div>
 
                             <div className="flex gap-1">
                                 <i className="fas fa-key text-white text-lg pt-2  mt-1.5"></i>
                                 <input 
                                     className='outline-none text-white font-bold p-2 bg-transparent border-b-2 border-blue-500 border-solid' 
-                                    type="password"  placeholder="Password" name="password" />
+                                    type="password"  placeholder="Password" name="password" required />
                             </div>
 
                             <div className="flex gap-1">
                                 <i className="fas fa-lock text-white text-lg pt-2  mt-1.5"></i>
                                 <input 
                                     className='outline-none text-white font-bold p-2 bg-transparent border-b-2 border-blue-500 border-solid' 
-                                    type="password"  placeholder="Confirm Password" name="repassword" />
+                                    type="password"  placeholder="Confirm Password" name="repassword" required />
                             </div>
 
                             <button className="w-36 h-10 bg-zinc-200 hover:bg-white text-black font-bold cursor-pointer rounded">
